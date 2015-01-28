@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="FloraQueen" default="build">
+
+    <target name="build" >
+        <echo msg="Generating src autoload" />
+        <exec command="bin\/phpab -o src\/autoload.php src --all" passthru="true" dir="" />
+        <echo msg="Generating test autoload" />
+        <exec command="bin\/phpab -o tests\/autoload.php -b tests src --all" passthru="true" dir="" />
+    </target>
+
+    <target name="tests" depends="build">
+        <echo msg="Executing unit tests..." />
+        <exec command="..\/..\/bin/phpunit --colors" passthru="true" dir="tests\/unit" />
+    </target>
+
+</project>
